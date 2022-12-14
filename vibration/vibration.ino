@@ -1,7 +1,11 @@
-#define PIN_NUM 3
+#define PIN_CNT 2
+
+const int pin_num[2] = {3, 5};
 
 void set_vibration_motor() {
-  pinMode(PIN_NUM, OUTPUT);
+  for (int i = 0; i < PIN_CNT; i++) {
+    pinMode(pin_num[i], OUTPUT);
+  }
 }
 
 void set_serial_communication() {
@@ -12,7 +16,9 @@ void execute_vibration_motor(int brightness) {
   int vibration;
 
   vibration = brightness * 2 > 255 ? 255 : brightness * 2;
-  analogWrite(PIN_NUM, vibration);
+  for (int i = 0; i < PIN_CNT; i++) {
+    analogWrite(pin_num[i], vibration);
+  }
 }
 
 void setup() {
